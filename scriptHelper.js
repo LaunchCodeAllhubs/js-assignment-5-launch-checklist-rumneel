@@ -31,72 +31,88 @@ function validateInput(testInput) {
    
 }
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) { 
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
     let fuelStatus = document.getElementById("fuelStatus");
-    let cargoStatus = document.getElementById("cargoStatus");
-    //let list = document.getElementById("faultyItems");
-    list.style.visibility = "visible";
+    let cargoStatus = document.getElementById("cargoStatus");    
     
-    alert("all fields required");
 
     if(!pilot) {
         pilotStatus = "Empty";
+        
     } else {
         pilotStatus = validateInput(pilot);
 
     }
     if(!copilot) {
         copilotStatus = "Empty";
+       
     } else {
         copilotStatus = validateInput(copilot);
         
     }
     if(!fuelLevel) {
         fuelStatus = "Empty";
+      
     } else {
         fuelStatus = validateInput(fuelLevel);
         
     }
     if(!cargoLevel) {
         cargoStatus = "Empty";
+        
     } else {
         cargoStatus = validateInput(cargoLevel);
         
     }
-   }
+   
     pilotStatus.innerHTML = `Pilot: ${pilot}`;
     copilotStatus.innerHTML = `Co-Pilot: ${copilot}`;
 
-    if (validateInput(pilotStatus)=== "" || validateInput(copilotStatus) === "" || validateInput(fuelStatus) === "" ||
-     validateInput(cargoStatus) === "") {
+    if (validateInput(pilot)=== "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" ||
+     validateInput(cargoLevel) === "Empty") {
       alert("All fields are required");
 
-    } else if (fuelStatus === "Not a Number" || cargoStatus === "Not a Number" || pilotStatus === "Is a Number"|| 
-    copilotStatus === "Is a Number") {
-        list.style.visibility = "visible";
-        fuelStatus.innerHTML = "Fuel level and Cargo mass must be numbers!";
-        pilotStatus.innerHTML = "Pilot and Co-pilot names must be strings!";
-        launchStatus.innerHTML = "Shuttle not Ready for launch";
-        launchStatus.style.color = "rgb(199, 37, 78)"; // Red color
+    } else if (validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number" ||
+     validateInput(pilot) === "Is a Number"|| validateInput(copilot) === "Is a Number") {
+      alert ("Correct datatype required");
+        
 
-    } else if (fuelLevel < 10000 || cargoMass > 10000) {
+    } else if (fuelLevel < 10000 && cargoLevel > 10000) {
+      
             list.style.visibility = "visible";
-            fuelStatus.innerHTML = "Fuel level too low for launch";
+           fuelStatus.innerHTML = "Fuel level too low for launch";
+           cargoStatus.innerHTML = "Cargo mass too heavy for launch";
             launchStatus.innerHTML = "Shuttle not Ready for launch";
             launchStatus.style.color = "rgb(199, 37, 78)"; // Red color
-            cargoStatus.innerHTML = "Cargo mass too heavy for launch";
-            
-        } else {
-            list.style.visibility = "hidden";  
-            fuelStatus.innerHTML = "Fuel level high enough for launch";
-            cargoStatus.innerHTML = "Cargo mass low enough for launch";
+            alert("Fuel too low and Cargo too high!!!");
+
+    } else if (fuelLevel > 10000 && cargoLevel > 10000) {
+      
+            list.style.visibility = "visible";
+           fuelStatus.innerHTML = "Fuel level high enough for launch";
+           cargoStatus.innerHTML = "Cargo mass too heavy for launch";
+            launchStatus.innerHTML = "Shuttle not Ready for launch";
+            launchStatus.style.color = "rgb(199, 37, 78)"; // Red color
+            alert("Cargo too heavy!! ");
+                
+    } else if (fuelLevel < 10000 && cargoLevel < 10000) {
+           
+                    list.style.visibility = "visible";
+                   fuelStatus.innerHTML = "Fuel level too low for launch";
+                   cargoStatus.innerHTML = "Cargo mass low enough for launch";
+                    launchStatus.innerHTML = "Shuttle not Ready for launch";
+                    launchStatus.style.color = "rgb(199, 37, 78)"; // Red color
+                    alert("Fuel too low!!");
+
+       } else {
+           // list.style.visibility = "hidden";  
             launchStatus.style.color = "rgb(65, 159, 106)";
             launchStatus.innerHTML = " Shuttle is Ready for Launch";
         }
 
+    }
 
   async function myFetch() {
    let planetsReturned;

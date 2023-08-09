@@ -15,19 +15,16 @@ window.addEventListener("load", function() {
        addDestinationInfo(document, planet.name,planet.diameter,planet.star,planet.distance,planet.moons,planet.image);
   
    });
-   console.log("Hello");
       // window.addEventListener("load",function () {
                const form = document.querySelector("form");
                let list = document.getElementById("faultyItems");
                form.addEventListener("submit", function (event) { 
                 event.preventDefault();
-                let pilot = document.querySelector("input[name=pilot]").value;
-                let copilot = document.querySelector("input[name=copilot]").value;
+                let pilot = document.querySelector("input[name=pilotName]").value;
+                let copilot = document.querySelector("input[name=copilotName]").value;
                 let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
-                let cargoLevel = document.querySelector("input[name=cargoLevel]").value;
-                console.log("Hello");
+                let cargoLevel = document.querySelector("input[name=cargoMass]").value;
                 formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
-                
             });
 
 
