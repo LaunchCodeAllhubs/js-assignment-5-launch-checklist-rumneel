@@ -72,6 +72,6 @@ describe("GRADING FETCH CALL TEST: ", function () {
    })
 
    it("Student calls addDestinationInfo inside script", function() {
-      expect(script.includes("addDestinationInfo(")).toBeTrue;
+      expect(script.includes("addDestinationInfo(")).toBeTrue();
    })
 })
